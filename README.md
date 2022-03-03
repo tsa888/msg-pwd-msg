@@ -1,1 +1,1 @@
-# msg-pwd-msg
+# msg-pwd-mgr
