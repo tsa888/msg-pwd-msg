@@ -19,6 +19,7 @@ add_library(
         libutil
         STATIC
         IMPORTED)
+#        ${CMAKE_SOURCE_DIR}/libs/util/libutil.c)
 set_target_properties(
         libutil
         PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/util/libutil.a)

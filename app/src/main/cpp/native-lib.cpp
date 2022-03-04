@@ -18,7 +18,7 @@ Java_com_ts_msg_invw_PwMgr_MainActivity_appTitleFromJNI(
         jobject /* this */) {
 
     // try to call the self build static library
-    int sum = getSum(1, 2);
+//    int sum = getSum(1, 2);
 
 
 //    int ans = charArrayToInt(key);
