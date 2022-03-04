@@ -14,12 +14,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.ts.msg.invw.PwMgr.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     public native String getOpenSSLVersionFromJNI();
     public native String saveToJNI(String usrpwd);
     public native String readFromJNI();
-    public native String deleteJNI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(appTitleFromJNI());
 
         // test the c function
-        Toast.makeText(this, saveToJNI("Hoi ") +", " + readFromJNI() + ", "+ deleteJNI(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, saveToJNI("Hoi ") +", " + readFromJNI(), Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_main);
 

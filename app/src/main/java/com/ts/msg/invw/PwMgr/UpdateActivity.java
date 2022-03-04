@@ -17,6 +17,12 @@ public class UpdateActivity extends AppCompatActivity {
     Button update_button, delete_button;
 
     String id, webapp, usrname, usrpwd;
+
+    static {
+        System.loadLibrary("PwMgr");
+    }
+    public native String deleteJNI();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +83,7 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 myDB.deleteOneRow(id);
+                deleteJNI();
                 finish();
             }
         });
