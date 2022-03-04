@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +19,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     String id, webapp, usrname, usrpwd;
 
-    static {
-        System.loadLibrary("PwMgr");
-    }
-    public native String deleteJNI();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +42,10 @@ public class UpdateActivity extends AppCompatActivity {
                 usrname = user_name.getText().toString().trim();
                 usrpwd = user_pwd.getText().toString().trim();
                 myDB.updateData(id, webapp, usrname, usrpwd);
+                //Refresh Activity
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         delete_button.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +85,9 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 myDB.deleteOneRow(id);
-                deleteJNI();
+                //Refresh Activity
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

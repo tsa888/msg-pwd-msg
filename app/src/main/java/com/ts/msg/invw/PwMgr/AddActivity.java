@@ -2,6 +2,7 @@ package com.ts.msg.invw.PwMgr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,10 @@ public class AddActivity extends AppCompatActivity {
                 myDB.addRecord(web_app_name.getText().toString().trim(),
                         user_name.getText().toString().trim(),
                         user_pwd.getText().toString().trim());
+                //Refresh Activity
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

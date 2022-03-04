@@ -21,6 +21,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USRNAME = "usr_name";
     private static final String COLUMN_USRPWD = "usr_pwd";
 
+    static {
+        System.loadLibrary("PwMgr");
+    }
+    public native String deleteJNI();
+
     MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -78,7 +83,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, webapp  +"\n -> Updated Successfully!", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -86,10 +91,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        // replace with native call
+        String jniResult = deleteJNI();
         if(result == -1){
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, jniResult, Toast.LENGTH_SHORT).show();
         }
     }
 
