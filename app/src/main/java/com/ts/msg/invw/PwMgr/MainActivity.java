@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String appTitleFromJNI();
+    public native String getSqlite3VersionFromJNI();
+    public native String getOpenSSLVersionFromJNI();
     public native String saveToJNI(String usrpwd);
     public native String readFromJNI();
     public native String deleteJNI();
@@ -119,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.delete_all){
             confirmDialog();
+        } else if(item.getItemId() == R.id.about){
+            aboutDialog();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -142,6 +146,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+            }
+        });
+        builder.create().show();
+    }
+
+    void aboutDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About");
+        builder.setMessage("Sqlite3 : " + getSqlite3VersionFromJNI() + "\n" + getOpenSSLVersionFromJNI() + "\n" );
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Refresh Activity
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         builder.create().show();

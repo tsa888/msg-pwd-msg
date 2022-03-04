@@ -1,14 +1,10 @@
 /* Filename: libutil.h */
-
-
-#ifndef LIBUTIL_H
-#define LIBUTIL_H
-//#ifdef  __cplusplus
-extern "C" {
-//#endif
+#ifndef LIBUTIL_H_   /* Include guard */
+#define LIBUTIL_H_
 //   extern const char*  getAppTitle(void);
-   extern int  getSum(int a, int b);
-//#ifdef  __cplusplus
-}
-//#endif
-#endif  /* TEST_H */
+int getSum(int, int );
+int charArrayToInt(char*);
+
+//#define LIB_UTIL_VERSION "0.0.1"
+
+#endif

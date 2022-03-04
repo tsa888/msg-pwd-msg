@@ -21,9 +21,20 @@ add_library(
         IMPORTED)
 set_target_properties(
         libutil
-        PROPERTIES IMPORTED_LOCATION libs/util/libutil.a)
+        PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/util/libutil.a)
 include_directories(
-        libs/util/)
+        ${CMAKE_SOURCE_DIR}/libs/util/)
+
+# libsqlite3
+add_library(
+        libsqlite3
+        STATIC
+        IMPORTED)
+set_target_properties(
+        libsqlite3
+        PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/sqlite/lib/arm64-v8a/libsqlite3.a)
+include_directories(
+        ${CMAKE_SOURCE_DIR}/libs/sqlite/include)
 
 # libcrypto
 add_library(
@@ -32,9 +43,9 @@ add_library(
         IMPORTED)
 set_target_properties(
         libcrypto
-        PROPERTIES IMPORTED_LOCATION libs/openssl/arm64-v8a/lib/libcrypto.a)
+        PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/openssl/arm64-v8a/lib/libcrypto.a)
 include_directories(
-        libs/openssl/arm64-v8a/include)
+        ${CMAKE_SOURCE_DIR}/libs/openssl/arm64-v8a/include)
 
 # libssl
 add_library(
@@ -43,10 +54,14 @@ add_library(
         IMPORTED)
 set_target_properties(
         libssl
-        PROPERTIES IMPORTED_LOCATION libs/openssl/arm64-v8a/lib/libssl.a)
+        PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/openssl/arm64-v8a/lib/libssl.a)
 include_directories(
-        libs/openssl/arm64-v8a/include)
+        ${CMAKE_SOURCE_DIR}/libs/openssl/arm64-v8a/include)
 
 target_link_libraries( # Specifies the target library.
         PwMgr
-        ${log-lib})
+        ${log-lib}
+        libutil
+        libsqlite3
+        libcrypto
+        libssl)
